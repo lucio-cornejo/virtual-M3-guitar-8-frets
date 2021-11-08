@@ -211,11 +211,12 @@
                 var isChromium = window.chrome,
                     isOpera = window.navigator.userAgent.indexOf("OPR") > -1 || window.navigator.userAgent.indexOf("Opera") > -1;
                 
+                document.querySelector('table').style.minWidth = '100%';
+                
                 // If using a browser with a similar "engine" as Chrome and on my (creator's) mobile device
                 if(is_chrome && screen.height < 400){
                     tabla[0].style.display = 'none';
                     tabla[1].style.display = 'none';
-                    document.querySelector('table').style.minWidth = '100%';
                     
                     // If using Opera browser, or else ...
                     if(!(isChromium !== null && isOpera == true)){
