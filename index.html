@@ -8,6 +8,16 @@
         <script>
             // Prevent scrolling
             document.body.addEventListener('touchmove', function(event) {event.preventDefault();}, false); 
+
+            // Prevent pinch for drag or zoom
+            window.addEventListener("touchstart", touchHandler, false);
+            function touchHandler(event){
+                if(event.touches.length > 1){
+                    //the event is multi-touch
+                    //you can then prevent the behavior
+                    event.preventDefault()
+                }
+            }
         </script>
         <style>
             /* Do not show menu with "copy, paste, ..." after long press */
