@@ -205,8 +205,10 @@
             window.onload = function() {
                 var is_chrome = (typeof window.chrome === "object" && navigator.appVersion.indexOf('Edge') === -1);
                 if(is_chrome){
-                    document.querySelector('table').style.borderSpacing = '2px 2px';
-                    document.querySelector('table').style.minWidth = '100%';
+                    if(!window.opera){
+                        document.querySelector('table').style.borderSpacing = '2px 2px';
+                        document.querySelector('table').style.minWidth = '100%';
+                    }
                 }
             }
         </script>
