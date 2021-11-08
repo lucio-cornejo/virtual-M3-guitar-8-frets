@@ -19,7 +19,13 @@
                 user-select: none;            /* Non-prefixed version,currently supported by Chrome and Opera */
             }
 
+            /* Disable double-tap zoom */
+            body, table {
+                touch-action: manipulation;
+            }
+
             body {background-color: rgba(45, 145, 195, 0.981);}
+
             table {
                 margin-top: 50px;
                 position: relative;
