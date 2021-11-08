@@ -26,12 +26,6 @@
                     event.preventDefault();
                 }
             }
-
-            // If using Chrome to display site, alter some specific CSS
-            var is_chrome = (typeof window.chrome === "object" && navigator.appVersion.indexOf('Edge') === -1);
-            if(is.chrome){
-                document.querySelector('table').style.borderSpacing = '0px 0px';
-            }
         </script>
         <style>
             /* Do not show menu with "copy, paste, ..." after long press */
@@ -214,6 +208,12 @@
                 }
                 temp[0].style.backgroundColor =  'rgb(255,255,50)'; temp[0].style.color = 'black';
                 temp[4].style.backgroundColor = 'rgb(255,255,50)'; temp[4].style.color = 'black';
+            }
+
+             // If using Chrome to display site, alter some specific CSS
+             var is_chrome = (typeof window.chrome === "object" && navigator.appVersion.indexOf('Edge') === -1);
+            if(is.chrome){
+                document.querySelector('table').style.borderSpacing = '0px 0px';
             }
         </script>
 
