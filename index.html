@@ -39,11 +39,12 @@
             }
 
             table {
-                margin-top: 0px;
+                /* margin-top: 0px;
                 margin-bottom: 0px;
                 position: relative;
                 margin-left: auto;
-                margin-right: auto;
+                margin-right: auto; */
+                min-width: 100%;
                 border-spacing: 15px 15px;
             }
 
@@ -210,8 +211,6 @@
                 var is_chrome = (typeof window.chrome === "object" && navigator.appVersion.indexOf('Edge') === -1);
                 var isChromium = window.chrome,
                     isOpera = window.navigator.userAgent.indexOf("OPR") > -1 || window.navigator.userAgent.indexOf("Opera") > -1;
-                
-                document.querySelector('table').style.minWidth = '100%';
                 
                 // If using a browser with a similar "engine" as Chrome
                 if(is_chrome) {
