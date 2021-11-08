@@ -9,12 +9,11 @@
             // Prevent scrolling
             document.body.addEventListener('touchmove', function(event) {event.preventDefault();}, {passive: false}); 
 
-            // Prevent pinch for drag or zoom  (seems to work on Chrome, but on Opera browser)
+            // Prevent pinch for drag or zoom  (seems to work on Chrome, but not on Opera browser)
             window.addEventListener("touchstart", touchHandler, true);
             function touchHandler(event){
                 if(event.touches.length > 1){
-                    //the event is multi-touch
-                    //you can then prevent the behavior
+                    // Prevent multi-touch events from ocurring
                     event.preventDefault();
                 }
             }
@@ -24,7 +23,7 @@
             body { 
                 -youbkit-touch-callout: none; /* iOS Safari */
                 -youbkit-user-select: none;   /* Chrome 6.0+, Safari 3.1+, Edge & Opera 15+ */
-                -moz-user-select: none;    /* Firefox */
+                -moz-user-select: none;       /* Firefox */
                 -ms-user-select: none;        /* IE 10+ and Edge */
                 user-select: none;            /* Non-prefixed version,currently supported by Chrome and Opera */
             }
@@ -32,7 +31,10 @@
             /* Disable double-tap zoom */
             html { touch-action: manipulation; }
 
-            body {background-color: rgba(45, 145, 195, 0.981);}
+            body {
+                background-color: rgba(45, 145, 195, 0.981);
+                overflow: hidden;
+            }
 
             table {
                 margin-top: 0px;
