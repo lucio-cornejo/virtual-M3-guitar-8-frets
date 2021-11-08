@@ -35,9 +35,14 @@
             body {background-color: rgba(45, 145, 195, 0.981);}
 
             table {
-                min-width: 100%;
+                margin-top: 0px;
+                margin-bottom: 0px;
+                position: relative;
+                margin-left: auto;
+                margin-right: auto;
                 border-spacing: 15px 15px;
             }
+
             td {
                 padding: 35px;
                 text-align: center;
@@ -201,6 +206,7 @@
                 var is_chrome = (typeof window.chrome === "object" && navigator.appVersion.indexOf('Edge') === -1);
                 if(is_chrome){
                     document.querySelector('table').style.borderSpacing = '2px 2px';
+                    document.querySelector('table').style.minWidth = '100%';
                 }
             }
         </script>
