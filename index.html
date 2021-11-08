@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta name="viewport" content="width=device-width, user-scalable=no"/>
+        <meta name="viewport" content="width=device-width, user-scalable=0">
         <!-- viewport = document.querySelector("meta[name=viewport]");
         viewport.setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=0.8, user-scalable=0'); -->
 
@@ -10,7 +10,7 @@
             document.body.addEventListener('touchmove', function(event) {event.preventDefault();}, false); 
 
             // Prevent pinch for drag or zoom
-            window.addEventListener("touchstart", touchHandler, false);
+            window.addEventListener("touchstart", touchHandler, true);
             function touchHandler(event){
                 if(event.touches.length > 1){
                     //the event is multi-touch
