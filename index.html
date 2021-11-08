@@ -17,7 +17,7 @@
             // Prevent scrolling
             document.body.addEventListener('touchmove', function(event) {event.preventDefault();}, false); 
 
-            // Prevent pinch for drag or zoom (seems like a failed attempt tho)
+            // Prevent pinch for drag or zoom  (seems to work on Chrome, but on Opera browser)
             window.addEventListener("touchstart", touchHandler, true);
             function touchHandler(event){
                 if(event.touches.length > 1){
