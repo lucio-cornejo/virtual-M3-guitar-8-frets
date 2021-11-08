@@ -205,7 +205,7 @@
             // If using Chrome to display site, alter some specific CSS
             window.onload = function() {
                 var is_chrome = (typeof window.chrome === "object" && navigator.appVersion.indexOf('Edge') === -1);
-                if(!is_chrome){
+                if(is_chrome){
                     document.querySelector('table').style.borderSpacing = '2px 2px';
                 }
             }
