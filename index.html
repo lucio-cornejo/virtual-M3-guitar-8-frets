@@ -213,20 +213,25 @@
                 
                 document.querySelector('table').style.minWidth = '100%';
                 
-                // If using a browser with a similar "engine" as Chrome and on my (creator's) mobile device
-                if(is_chrome && screen.height < 400){
-                    tabla[0].style.display = 'none';
-                    tabla[1].style.display = 'none';
-                    
-                    // If using Opera browser, or else ...
-                    if(!(isChromium !== null && isOpera == true)){
-                        document.querySelector('table').style.borderSpacing = '2px 2px';
-                    } else {
-                        document.querySelector('table').style.borderSpacing = '5px 5px';
+                // If using a browser with a similar "engine" as Chrome
+                if(is_chrome) {
+                    // If using my (creator's) mobile device
+                    if(screen.height < 400) {
+                        tabla[0].style.display = 'none';
+                        tabla[1].style.display = 'none';
+                        
+                        // If using Opera browser, or else ...
+                        if(!(isChromium !== null && isOpera == true)){
+                            document.querySelector('table').style.borderSpacing = '2px 2px';
+                        } else {
+                            document.querySelector('table').style.borderSpacing = '5px 5px';
+                        }
                     }
+                } else {
+                    // Most likely I am using okasan no tablet
+                    document.querySelector('table').style.borderSpacing = '10px 10px';
                 }
             }
         </script>
-
     </body>
 </html>
