@@ -211,18 +211,17 @@
                 var isChromium = window.chrome,
                     isOpera = window.navigator.userAgent.indexOf("OPR") > -1 || window.navigator.userAgent.indexOf("Opera") > -1;
                 
-                // If using Chrome on my (creator's) mobile device
+                // If using a browser with a similar "engine" as Chrome and on my (creator's) mobile device
                 if(is_chrome && screen.height < 800){
+                    tabla[0].style.display = 'none';
+                    tabla[1].style.display = 'none';
+                    document.querySelector('table').style.minWidth = '100%';
+                    
+                    // If using Opera browser
                     if(!(isChromium !== null && isOpera == true)){
-                        tabla[0].style.display = 'none';
-                        tabla[1].style.display = 'none';
                         document.querySelector('table').style.borderSpacing = '2px 2px';
-                        document.querySelector('table').style.minWidth = '100%';
                     } else {
-                        tabla[0].style.display = 'none';
-                        tabla[1].style.display = 'none';
                         document.querySelector('table').style.borderSpacing = '5px 5px';
-                        document.querySelector('table').style.minWidth = '100%';
                     }
                 }
             }
