@@ -209,6 +209,8 @@
                 
                 if( !(isChromium !== null && isOpera == true) && is_chrome) {
                     // The browser used is Chrome, but it's not Opera using Chromium
+                    tabla[0].style.display = 'none';
+                    tabla[1].style.display = 'none';
                     document.querySelector('table').style.borderSpacing = '2px 2px';
                     document.querySelector('table').style.minWidth = '100%';
                 }
