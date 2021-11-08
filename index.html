@@ -5,11 +5,19 @@
         <!-- viewport = document.querySelector("meta[name=viewport]");
         viewport.setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=0.8, user-scalable=0'); -->
 
+        <!-- Remove 300 ms delay after touchend event -->
+        <script type='application/javascript' src='/path/to/fastclick.js'></script>
+        <script>
+            window.addEventListener('load', function() {
+                new FastClick(document.body);
+            }, false);
+        </script>
+
         <script>
             // Prevent scrolling
             document.body.addEventListener('touchmove', function(event) {event.preventDefault();}, false); 
 
-            // Prevent pinch for drag or zoom
+            // Prevent pinch for drag or zoom (seems like a failed attempt tho)
             window.addEventListener("touchstart", touchHandler, true);
             function touchHandler(event){
                 if(event.touches.length > 1){
