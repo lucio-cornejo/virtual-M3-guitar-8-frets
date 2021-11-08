@@ -211,11 +211,18 @@
                 var isChromium = window.chrome,
                     isOpera = window.navigator.userAgent.indexOf("OPR") > -1 || window.navigator.userAgent.indexOf("Opera") > -1;
                 
-                if( !(isChromium !== null && isOpera == true) && is_chrome) {
-                    // The browser used is Chrome, but it's not Opera using Chromium
+                // If using Chrome on my (creator's) mobile device
+                if(is_chrome && screen.height < 800){
                     tabla[0].style.display = 'none';
                     tabla[1].style.display = 'none';
                     document.querySelector('table').style.borderSpacing = '2px 2px';
+                    document.querySelector('table').style.minWidth = '100%';
+                }
+
+                // If using Opera on my (creator's) mobile device
+                if( (isChromium !== null && isOpera == true) && screen.height < 800) {
+                    tabla[0].style.display = 'none';
+                    tabla[1].style.display = 'none';
                     document.querySelector('table').style.minWidth = '100%';
                 }
             }
