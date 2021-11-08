@@ -5,14 +5,6 @@
         <!-- viewport = document.querySelector("meta[name=viewport]");
         viewport.setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=0.8, user-scalable=0'); -->
 
-        <!-- Remove 300 ms delay after touchend event -->
-        <script type='application/javascript' src='/path/to/fastclick.js'></script>
-        <script>
-            window.addEventListener('load', function() {
-                new FastClick(document.body);
-            }, false);
-        </script>
-
         <script>
             // Prevent scrolling
             document.body.addEventListener('touchmove', function(event) {event.preventDefault();}, false); 
@@ -38,7 +30,7 @@
             }
 
             /* Disable double-tap zoom */
-            body, table {
+            html {
                 touch-action: manipulation;
             }
 
@@ -210,10 +202,12 @@
                 temp[4].style.backgroundColor = 'rgb(255,255,50)'; temp[4].style.color = 'black';
             }
 
-             // If using Chrome to display site, alter some specific CSS
-             var is_chrome = (typeof window.chrome === "object" && navigator.appVersion.indexOf('Edge') === -1);
-            if(is.chrome){
-                document.querySelector('table').style.borderSpacing = '0px 0px';
+            // If using Chrome to display site, alter some specific CSS
+            window.onload = function() {
+                var is_chrome = (typeof window.chrome === "object" && navigator.appVersion.indexOf('Edge') === -1);
+                if(is.chrome){
+                    document.querySelector('table').style.borderSpacing = '2px 2px';
+                }
             }
         </script>
 
