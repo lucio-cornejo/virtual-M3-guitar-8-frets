@@ -201,14 +201,16 @@
                 temp[4].style.backgroundColor = 'rgb(255,255,50)'; temp[4].style.color = 'black';
             }
 
-            // If using Chrome to display site, alter some specific CSS
+            // Changing the table styling depending on the browser used 
             window.onload = function() {
                 var is_chrome = (typeof window.chrome === "object" && navigator.appVersion.indexOf('Edge') === -1);
-                if(is_chrome){
-                    if(!window.opera){
-                        document.querySelector('table').style.borderSpacing = '2px 2px';
-                        document.querySelector('table').style.minWidth = '100%';
-                    }
+                var isChromium = window.chrome,
+                    isOpera = window.navigator.userAgent.indexOf("OPR") > -1 || window.navigator.userAgent.indexOf("Opera") > -1;
+                
+                if( !(isChromium !== null && isOpera == true) && is_chrome) {
+                    // The browser used is Chrome, but it's not Opera using Chromium
+                    document.querySelector('table').style.borderSpacing = '2px 2px';
+                    document.querySelector('table').style.minWidth = '100%';
                 }
             }
         </script>
