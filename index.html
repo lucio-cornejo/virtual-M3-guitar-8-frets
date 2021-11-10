@@ -42,7 +42,7 @@
             }
 
             div {height: 100%;}
-            
+
             table {
                 border-spacing: 15px 15px;
             }
@@ -215,18 +215,10 @@
                 alert(screen.height);
                 alert(screen.width);
 
-                // Adjusting the table size
-                if(screen.height >= screen.width){
-                    document.querySelector('html').style.height = '100%';
-                    document.querySelector('body').style.height = '100%';
-                    document.querySelector('div').style.height  = '100%';
-                } else {
-                    document.querySelector('table').style.minWidth = '100%';
-                }
                 
                 var is_chrome = (typeof window.chrome === "object" && navigator.appVersion.indexOf('Edge') === -1);
                 var isChromium = window.chrome,
-                    isOpera = window.navigator.userAgent.indexOf("OPR") > -1 || window.navigator.userAgent.indexOf("Opera") > -1;
+                isOpera = window.navigator.userAgent.indexOf("OPR") > -1 || window.navigator.userAgent.indexOf("Opera") > -1;
                 
                 // If using a browser with a similar "engine" as Chrome
                 if(is_chrome) {
@@ -246,7 +238,16 @@
                     // Most likely I am using okasan no tablet
                     document.querySelector('table').style.borderSpacing = '10px 10px';
                 }
+                
+                // Adjusting the table size
+                if(screen.height >= screen.width){
+                    document.querySelector('html').style.height = '100%';
+                    document.querySelector('body').style.height = '100%';
+                    document.querySelector('div').style.height  = '100%';
+                } else {
+                    document.querySelector('table').style.minWidth = '100%';
+                }
             }
-        </script>
+            </script>
     </body>
-</html>
+    </html>
