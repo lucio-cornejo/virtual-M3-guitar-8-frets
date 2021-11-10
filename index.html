@@ -31,21 +31,16 @@
             }
 
             html { 
-                height: 100%;
                 touch-action: manipulation;  /* Disable double-tap zoom */
             }
 
             body {
-                height: 100%;
                 overflow: hidden !important;
                 background-color: rgba(45, 145, 195, 0.981);
             }
 
-            div {height: 100%;}
-
             table {
                 border-spacing: 15px 15px;
-                height: 100%;
             }
 
             td {
@@ -216,6 +211,15 @@
                 alert(screen.height);
                 alert(screen.width);
 
+                // Adjusting the table size
+                if(screen.height >= screen.width){
+                    document.querySelector('html').style.height = '100%';
+                    document.querySelector('body').style.height = '100%';
+                    document.querySelector('div').style.height  = '100%';
+                    document.querySelector('table').style.height  = '100%';
+                } else {
+                    document.querySelector('table').style.minWidth = '100%';
+                }
                 
                 var is_chrome = (typeof window.chrome === "object" && navigator.appVersion.indexOf('Edge') === -1);
                 var isChromium = window.chrome,
@@ -238,15 +242,6 @@
                 } else {
                     // Most likely I am using okasan no tablet
                     document.querySelector('table').style.borderSpacing = '10px 10px';
-                }
-                
-                // Adjusting the table size
-                if(screen.height >= screen.width){
-                    document.querySelector('html').style.height = '100%';
-                    document.querySelector('body').style.height = '100%';
-                    document.querySelector('div').style.height  = '100%';
-                } else {
-                    document.querySelector('table').style.minWidth = '100%';
                 }
             }
             </script>
