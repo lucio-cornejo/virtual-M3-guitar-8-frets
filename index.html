@@ -247,7 +247,9 @@
             }
 
             // Adjust the table dimensions in case of screen's dimenion changes
-            window.addEventListener('resize', resizeTabla, false);
+            window.addEventListener('resize', function() {
+                alert('change!!!');
+            }, false);
 
             </script>
     </body>
