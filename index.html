@@ -205,11 +205,9 @@
                 temp[4].style.backgroundColor =  'rgb(255,255,50)'; temp[4].style.color = 'black';
             }
 
-            // Changing the table styling depending on the browser used 
-            window.onload = function() {
-
-                // Adjusting the table size
-                if(screen.height >= screen.width){
+            // Changing the table styling depending on the screen dimensions
+            function resizeTabla() {
+                if(screen.availHeight >= screen.availWidth){
                     document.querySelector('html').style.height = '100%';
                     document.querySelector('body').style.height = '100%';
                     document.querySelector('div').style.height  = '100%';
@@ -217,7 +215,12 @@
                 } else {
                     document.querySelector('table').style.minWidth = '100%';
                 }
-                
+            }
+
+            window.onload = function() {
+
+                resizeTabla();
+
                 // Checking the type of browser used
                 var is_chrome = (typeof window.chrome === "object" && navigator.appVersion.indexOf('Edge') === -1);
                 var isChromium = window.chrome,
@@ -242,6 +245,10 @@
                     document.querySelector('table').style.borderSpacing = '10px 10px';
                 }
             }
+
+            // Adjust the table dimensions in case of screen's dimenion changes
+            window.addEventListener('resize', resizeTabla, false);
+
             </script>
     </body>
     </html>
