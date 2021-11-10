@@ -248,7 +248,30 @@
 
             // Adjust the table dimensions in case of screen's dimenion changes
             window.addEventListener('resize', function() {
-                alert('change!!!');
+                if(screen.availHeight >= screen.availWidth){
+                    document.querySelector('html').style.height = '100%';
+                    document.querySelector('body').style.height = '100%';
+                    document.querySelector('div').style.height  = '100%';
+                    document.querySelector('table').style.height  = '100%';
+                    
+                    tabla[0].style.display = 'table-row';
+                    tabla[1].style.display = 'table-row';
+                    document.querySelector('table').style.borderSpacing = '15px 15px';
+                } else {
+                    document.querySelector('table').style.minWidth = '100%';
+                    // If using my mobile device
+                    if(screen.height < 400) {
+                        tabla[0].style.display = 'none';
+                        tabla[1].style.display = 'none';
+                        
+                        // If using Opera browser, or else ...
+                        if(!(isChromium !== null && isOpera == true)){
+                            document.querySelector('table').style.borderSpacing = '2px 2px';
+                        } else {
+                            document.querySelector('table').style.borderSpacing = '5px 5px';
+                        }
+                    }
+                }
             }, false);
 
             </script>
