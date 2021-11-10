@@ -209,11 +209,11 @@
 
                 // Adjusting the table size
                 if(screen.height >= screen.width){
-                    document.querySelector('table').style.minHeight = '100%';
-                } else {
                     document.querySelector('html').style.height = '100%';
                     document.querySelector('body').style.height = '100%';
                     document.querySelector('div').style.height  = '100%';
+                } else {
+                    document.querySelector('table').style.minWidth = '100%';
                 }
                 
                 var is_chrome = (typeof window.chrome === "object" && navigator.appVersion.indexOf('Edge') === -1);
