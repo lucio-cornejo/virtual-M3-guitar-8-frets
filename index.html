@@ -39,7 +39,6 @@
             }
 
             table {
-                min-width: 100%;
                 border-spacing: 15px 15px;
             }
 
@@ -205,6 +204,14 @@
 
             // Changing the table styling depending on the browser used 
             window.onload = function() {
+
+                // Adjusting the table size
+                if(screen.height >= screen.width){
+                    document.querySelector('table').style.minHeight = '100%';
+                } else {
+                    document.querySelector('table').style.minWidth = '100%';
+                }
+                
                 var is_chrome = (typeof window.chrome === "object" && navigator.appVersion.indexOf('Edge') === -1);
                 var isChromium = window.chrome,
                     isOpera = window.navigator.userAgent.indexOf("OPR") > -1 || window.navigator.userAgent.indexOf("Opera") > -1;
