@@ -23,8 +23,12 @@
     )
   </script>
   <style>
-    /* Disable double-tap zoom */
-    html { touch-action: manipulation; }
+    html { 
+      overflow: hidden !important;
+      background-color: rgba(45, 145, 195, 0.981);
+      /* Disable double-tap zoom */
+      touch-action: manipulation; 
+    }
     /* Do not show menu with "copy, paste, ..." after long press */
     body { 
       -youbkit-touch-callout: none; /* iOS Safari */
@@ -32,10 +36,6 @@
       -moz-user-select: none;       /* Firefox */
       -ms-user-select: none;        /* IE 10+ and Edge */
       user-select: none;            /* Non-prefixed version,currently supported by Chrome and Opera */
-    }
-    body {
-      overflow: hidden !important;
-      background-color: rgba(45, 145, 195, 0.981);
     }
 
     table { border-spacing: 15px 15px; } 
@@ -201,7 +201,7 @@
     let tabla = document.getElementsByTagName('tr');
 
     for (let i = 0; i < tabla.length; i++) {
-      temp = Array.prototype.slice.call(tabla[i].children);
+      temp = [...tabla[i].children];
       for (let j = 0; j < 8; j++) {
         temp[j].style.color = 'white';
         temp[j].style.backgroundColor = 'black';
@@ -244,34 +244,36 @@
           }
         }
       } else {
-        // Most likely I am using okasan no tablet
+        // Most likely I am using someone's tablet
         document.querySelector('table').style.borderSpacing = '10px 10px';
       }
     }
 
     // Adjust the table dimensions in case of screen's dimenion changes
-    window.addEventListener('resize', function() {
-      if(screen.availHeight >= screen.availWidth){
-        document.querySelector('html').style.height = '100%';
-        document.querySelector('body').style.height = '100%';
-        document.querySelector('div').style.height  = '100%';
-        document.querySelector('table').style.height  = '100%';
-        
-        tabla[0].style.display = 'table-row';
-        tabla[5].style.display = 'table-row';
-        document.querySelector('table').style.borderSpacing = '15px 15px';
-      } else {
-        document.querySelector('html').style.height = 'auto';
-        document.querySelector('body').style.height = 'auto';
-        document.querySelector('div').style.height  = 'auto';
-        document.querySelector('table').style.height  = 'auto';
-        document.querySelector('table').style.minWidth = '100%';
+    window.addEventListener(
+      'resize',
+      function() {
+        if(screen.availHeight >= screen.availWidth){
+          document.querySelector('html').style.height = '100%';
+          document.querySelector('body').style.height = '100%';
+          document.querySelector('div').style.height  = '100%';
+          document.querySelector('table').style.height  = '100%';
+          
+          tabla[0].style.display = 'table-row';
+          tabla[5].style.display = 'table-row';
+          document.querySelector('table').style.borderSpacing = '15px 15px';
+        } else {
+          document.querySelector('html').style.height = 'auto';
+          document.querySelector('body').style.height = 'auto';
+          document.querySelector('div').style.height  = 'auto';
+          document.querySelector('table').style.height  = 'auto';
+          document.querySelector('table').style.minWidth = '100%';
 
-        tabla[0].style.display = 'none';
-        tabla[5].style.display = 'none';
-        document.querySelector('table').style.borderSpacing = '5px 5px';
-      }
-    }, false);
+          tabla[0].style.display = 'none';
+          tabla[5].style.display = 'none';
+          document.querySelector('table').style.borderSpacing = '5px 5px';
+        }
+      }, false);
   </script>
 </body>
 </html>
