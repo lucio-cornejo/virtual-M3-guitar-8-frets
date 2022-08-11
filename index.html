@@ -153,7 +153,7 @@
   <audio class="notes" preload="auto"><source src="audio/D5.mp3"></source></audio>
   <audio class="notes" preload="auto"><source src="audio/Eb5.mp3"></source></audio>
    -->
-   
+
   <script>
     // Load some pitches from a piano.
     // Tone.js will convert such pitches 
@@ -193,12 +193,14 @@
           // 'touchstart', 
           'pointerdown', 
           function () {
+            // Color note cell played
+            this.classList.add('hover');
+            // Play note
             const nota = this.id.slice(0, -1);
             window.sampler.triggerAttackRelease(nota, 2);
             // audio = musical_notes[this.dataset.nota];
             // audio.currentTime = 0;
             // audio.play();
-            this.classList.add('hover');
           }
         )
       document.getElementById(notas_izquierda[i])
@@ -216,12 +218,14 @@
           // 'touchstart',
           'pointerdown', 
           function () {
+            // Color note cell played
+            this.classList.add('hover');
+            // Play note
             const nota = this.id.slice(0, -1);
             window.sampler.triggerAttackRelease(nota, 2);
             // audio = musical_notes[this.dataset.nota]; 
             // audio.currentTime = 0; 
             // audio.play();
-            this.classList.add('hover');
           }
         )
       document.getElementById(notas_derecha[i])
