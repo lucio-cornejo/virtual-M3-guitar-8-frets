@@ -3,6 +3,8 @@
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=0.8, user-scalable=no">
   <meta name="mobile-web-app-capable" content="yes">
+  <!-- Load Tone.js library for audio controls -->
+  <script src="https://tonejs.github.io/build/Tone.js"></script>
 
   <script>
     // Prevent scrolling
@@ -22,6 +24,7 @@
       }
     )
   </script>
+
   <style>
     html { 
       overflow: hidden !important;
@@ -153,14 +156,21 @@
     // Play sound on hover
     let audio;
     const musical_notes = document.getElementsByClassName('notes');
-    const notas_izquierda = ['c30','db30','d30','eb30','e30','f30','gb30','g30','ab30','a30','bb30','b30','c40','db40','d40','eb40','e40','f40','gb40','g40','ab40','a40','bb40','b40']
-    const notas_derecha = ['e31','f31','gb31','g31','ab31','a31','bb31','b31','c41','db41','d41','eb41','e41','f41','gb41','g41','ab41','a41','bb41','b41','c51','db51','d51','eb51']
+    const notas_izquierda = [
+      'c30','db30','d30','eb30','e30','f30','gb30','g30','ab30','a30','bb30','b30',
+      'c40','db40','d40','eb40','e40','f40','gb40','g40','ab40','a40','bb40','b40'
+    ]
+    const notas_derecha = [
+      'e31','f31','gb31','g31','ab31','a31','bb31','b31','c41','db41','d41','eb41',
+      'e41','f41','gb41','g41','ab41','a41','bb41','b41','c51','db51','d51','eb51'
+    ]
 
     // Asignamos audio interaction a las notas del lado izquierdo
     for (let i = 0; i < notas_izquierda.length; i++) {
       document.getElementById(notas_izquierda[i])
         .addEventListener(
-          'touchstart', 
+          // 'touchstart', 
+          'pointerdown', 
           function() {
             audio = musical_notes[this.dataset.nota];
             audio.currentTime = 0;
@@ -170,7 +180,8 @@
         )
       document.getElementById(notas_izquierda[i])
         .addEventListener(
-          'touchend',
+          // 'touchend',
+          'pointerup',
           function () { this.classList.remove('hover');}
         )
     }
@@ -179,7 +190,8 @@
     for (let i = 0; i < notas_derecha.length; i++) {
       document.getElementById(notas_derecha[i])
         .addEventListener(
-          'touchstart',
+          // 'touchstart',
+          'pointerdown', 
           function() {
             audio = musical_notes[this.dataset.nota]; 
             audio.currentTime = 0; 
@@ -189,7 +201,8 @@
         )
       document.getElementById(notas_derecha[i])
         .addEventListener(
-          'touchend',
+          // 'touchend',
+          'pointerup',
           function () { this.classList.remove('hover'); }
         )
     }
@@ -222,32 +235,44 @@
       }
     }
 
-    window.onload = function() {
-      resizeTabla();
-      // Checking the type of browser used
-      let is_chrome = (typeof window.chrome === "object" && navigator.appVersion.indexOf('Edge') === -1);
-      let isChromium = window.chrome,
-      isOpera = window.navigator.userAgent.indexOf("OPR") > -1 || window.navigator.userAgent.indexOf("Opera") > -1;
-      
-      // If using a browser with a similar "engine" as Chrome
-      if (is_chrome) {
-        // If using my mobile device
-        if (screen.height < 400) {
-          tabla[0].style.display = 'none';
-          tabla[1].style.display = 'none';
-          
-          // If using Opera browser, or else ...
-          if (!(isChromium !== null && isOpera == true)) {
-            document.querySelector('table').style.borderSpacing = '2px 2px';
-          } else {
-            document.querySelector('table').style.borderSpacing = '5px 5px';
+    window.addEventListener(
+      'DOMContentLoaded',
+      function () {
+        resizeTabla();
+        // Checking the type of browser used
+        let is_chrome = (typeof window.chrome === "object" && navigator.appVersion.indexOf('Edge') === -1);
+        let isChromium = window.chrome,
+        isOpera = window.navigator.userAgent.indexOf("OPR") > -1 || window.navigator.userAgent.indexOf("Opera") > -1;
+        
+        // If using a browser with a similar "engine" as Chrome
+        if (is_chrome) {
+          // If using my mobile device
+          if (screen.height < 400) {
+            tabla[0].style.display = 'none';
+            tabla[1].style.display = 'none';
+            
+            // If using Opera browser, or else ...
+            if (!(isChromium !== null && isOpera == true)) {
+              document.querySelector('table').style.borderSpacing = '2px 2px';
+            } else {
+              document.querySelector('table').style.borderSpacing = '5px 5px';
+            }
           }
+        } else {
+          // Most likely I am using someone's tablet
+          document.querySelector('table').style.borderSpacing = '10px 10px';
         }
-      } else {
-        // Most likely I am using someone's tablet
-        document.querySelector('table').style.borderSpacing = '10px 10px';
       }
-    }
+    );
+
+    document.body.addEventListener("click",
+      async () => { 
+        // Wait for permission to browser to play audio
+        await Tone.start()
+        console.log('Audio is ready');
+      },
+      { once: true }
+    );
 
     // Adjust the table dimensions in case of screen's dimenion changes
     window.addEventListener(
