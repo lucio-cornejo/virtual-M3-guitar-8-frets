@@ -123,6 +123,7 @@
     </table>
   </div>
 
+  <!-- 
   <audio class="notes" preload="auto"><source src="audio/C3.mp3"></source></audio>
   <audio class="notes" preload="auto"><source src="audio/Db3.mp3"></source></audio>
   <audio class="notes" preload="auto"><source src="audio/D3.mp3"></source></audio>
@@ -151,7 +152,27 @@
   <audio class="notes" preload="auto"><source src="audio/Db5.mp3"></source></audio>
   <audio class="notes" preload="auto"><source src="audio/D5.mp3"></source></audio>
   <audio class="notes" preload="auto"><source src="audio/Eb5.mp3"></source></audio>
+   -->
+   
+  <script>
+    // Load some pitches from a piano.
+    // Tone.js will convert such pitches 
+    // to other pitches that can be played by the browser
+    // but were not loaded to this page.
+    window["sampler"] = new Tone.Sampler({
+      urls: {
+        "C4": "C4.mp3",
+        "D#4": "Ds4.mp3",
+        "F#4": "Fs4.mp3",
+        "A4": "A4.mp3",
+      },
+      release: 1,
+      baseUrl: "https://tonejs.github.io/audio/salamander/",
+    }).toDestination();
 
+    // window.sampler.triggerAttackRelease(["Eb4", "G4", "Bb4"], 4);
+  </script>
+  
   <script>
     // Play sound on hover
     let audio;
@@ -166,15 +187,17 @@
     ]
 
     // Asignamos audio interaction a las notas del lado izquierdo
-    for (let i = 0; i < notas_izquierda.length; i++) {
+    for (let i=0; i<notas_izquierda.length; i++) {
       document.getElementById(notas_izquierda[i])
         .addEventListener(
           // 'touchstart', 
           'pointerdown', 
-          function() {
-            audio = musical_notes[this.dataset.nota];
-            audio.currentTime = 0;
-            audio.play();
+          function () {
+            const nota = this.id.slice(0, -1);
+            window.sampler.triggerAttackRelease(nota, 2);
+            // audio = musical_notes[this.dataset.nota];
+            // audio.currentTime = 0;
+            // audio.play();
             this.classList.add('hover');
           }
         )
@@ -182,20 +205,22 @@
         .addEventListener(
           // 'touchend',
           'pointerup',
-          function () { this.classList.remove('hover');}
+          function () { this.classList.remove('hover'); }
         )
     }
 
     // Asignamos audio interaction a las notas del lado derecho
-    for (let i = 0; i < notas_derecha.length; i++) {
+    for (let i=0; i<notas_derecha.length; i++) {
       document.getElementById(notas_derecha[i])
         .addEventListener(
           // 'touchstart',
           'pointerdown', 
-          function() {
-            audio = musical_notes[this.dataset.nota]; 
-            audio.currentTime = 0; 
-            audio.play();
+          function () {
+            const nota = this.id.slice(0, -1);
+            window.sampler.triggerAttackRelease(nota, 2);
+            // audio = musical_notes[this.dataset.nota]; 
+            // audio.currentTime = 0; 
+            // audio.play();
             this.classList.add('hover');
           }
         )
@@ -213,7 +238,7 @@
     let temp;
     let tabla = document.getElementsByTagName('tr');
 
-    for (let i = 0; i < tabla.length; i++) {
+    for (let i=0; i<tabla.length; i++) {
       temp = [...tabla[i].children];
       for (let j = 0; j < 8; j++) {
         temp[j].style.color = 'white';
